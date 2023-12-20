@@ -42,7 +42,7 @@ Clone the repository:
 
 bash
 Copy code
-git clone <repository-url>
+git clone https://github.com/vandana104/assignment-metasky.git
 Install dependencies:
 
 bash
@@ -57,7 +57,8 @@ npm run dev
 Open your browser and navigate to http://localhost:3000 to view the dashboard.
 
 Deployment
-The project is deployed on Netlify or Vercel, ensuring easy access to the live application.
+The project is deployed on Netlify, ensuring easy access to the live application.
+Hosted url : assignment-metasky.netlify.app
 
 Performance Considerations
 The project leverages the following techniques for optimal load times and performance:
@@ -66,6 +67,6 @@ Custom Hook for API Data: Implements a custom hook to efficiently fetch data fro
 Material-UI (MUI): Enhances the user interface with responsive and optimized components.
 Redux State Management: Manages application state, preventing unnecessary re-renders and improving overall performance.
 Project Repository
-The public GitHub repository for the project can be found at assignment-metasky.
+The public GitHub repository https://github.com/vandana104/assignment-metasky.git 
 
 Feel free to explore, contribute, or provide feedback!
