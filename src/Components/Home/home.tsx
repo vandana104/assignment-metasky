@@ -8,6 +8,9 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import NavBar from "../Navbar/NavBar";
+import { useSelector } from "react-redux";
+import { RootState } from "../../utils/store";
 //
 interface User {
   id: string;
@@ -24,20 +27,20 @@ interface User {
 
 const Home: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
-
+  const [dupUsers, setDupUsers] = useState<User[]>([]);
+  const filteredUser = useSelector(
+    (state: RootState) => state.auth.filteredData,
+  );
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           "https://randomuser.me/api/?results=100",
         );
-        const apiUsers: User[] = response.data.results.map((apiUser: any) => ({
-          id: apiUser.login.uuid,
-          name: apiUser.name,
-          email: apiUser.email,
-          dob: apiUser.dob,
-        }));
+        const apiUsers: User[] = response.data.results;
+        console.log(apiUsers);
         setUsers(apiUsers);
+        setDupUsers(apiUsers);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -46,8 +49,15 @@ const Home: React.FC = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    setUsers(filteredUser);
+
+    // if(filteredUser)
+  }, [filteredUser]);
+
   return (
     <div>
+      <NavBar users={dupUsers} />
       <TableContainer>
         <Table>
           <TableHead>
@@ -60,7 +70,7 @@ const Home: React.FC = () => {
           </TableHead>
           <TableBody>
             {users.map((user, index) => (
-              <TableRow key={user.id}>
+              <TableRow key={user.email}>
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>{`${user.name.title} ${user.name.first} ${user.name.last}`}</TableCell>
                 <TableCell>{user.email}</TableCell>

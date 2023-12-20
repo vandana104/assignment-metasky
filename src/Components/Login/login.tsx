@@ -1,9 +1,21 @@
 import React, { useState } from "react";
-import { Container, Typography, TextField, Button, Link, FormControl, InputLabel, InputAdornment, IconButton, OutlinedInput, Box } from "@mui/material";
+import {
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Link,
+  FormControl,
+  InputLabel,
+  InputAdornment,
+  IconButton,
+  OutlinedInput,
+  Box,
+} from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import BackgroundImage from "../images/authBackgroundImage.jpg";
-import { useDispatch } from "react-redux"; // Assuming you are using Redux
-import { useNavigate, NavigateFunction } from "react-router-dom"; // Assuming you are using React Router
+import { useDispatch } from "react-redux"; 
+import { useNavigate, NavigateFunction } from "react-router-dom"; 
 import { loginSuccess } from "../../utils/auth";
 
 const Login: React.FC = () => {
@@ -31,18 +43,18 @@ const Login: React.FC = () => {
 
     if (isUsernameValid && isPasswordValid) {
       alert("Login successful!");
-      dispatch(loginSuccess(username)); // Assuming you have a loginSuccess action creator
+      dispatch(loginSuccess(username)); 
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("username", username);
       navigate("/");
     } else {
       if (!isUsernameValid) {
         alert(
-          "Username should contain only small letters or be a valid email.",
+          "Caution: Usernames must exclusively consist of lowercase letters or be a recognized email format."
         );
       }
       if (!isPasswordValid) {
-        alert("Password should have at least 8 characters.");
+        alert("Alert: Passwords must possess a minimum of 8 characters.");
       }
     }
   };
@@ -55,23 +67,40 @@ const Login: React.FC = () => {
         height: "100vh",
         display: "flex",
         alignItems: "center",
-      }}
-    >
+      }}>
       <Container
         maxWidth="sm"
         sx={{
-          background: "rgba(255, 255, 255, 0.8)",
+          background: "rgb(255, 255, 255)",
           borderRadius: "8px",
           padding: "70px 20px 20px 20px",
           height: "500px",
-          width: "25%",
+          width: "30%",
           margin: "0 auto",
-          '@media (max-width: 1000px)': {
-            width: '50%',
+          "@media (max-width: 1100px)": {
+            width: "40%",
           },
-        }}
-      >
-        <Typography variant="h4" align="center" gutterBottom>
+          "@media (max-width: 1000px)": {
+            width: "50%",
+          },
+          "@media (max-width: 800px)": {
+            width: "57%",
+          },
+          "@media (max-width: 500px)": {
+            width: "80%",
+          },
+        }}>
+        <Typography
+          variant="h4"
+          align="center"
+          gutterBottom
+          sx={{
+            color: "rgba(0,0,0,0.7)",
+            "@media (max-width: 500px)": {
+              fontSize: "25px",
+              fontWeight: "700",
+            },
+          }}>
           Sign in now
         </Typography>
 
@@ -96,8 +125,7 @@ const Login: React.FC = () => {
                   <IconButton
                     aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
-                    edge="end"
-                  >
+                    edge="end">
                     {showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
@@ -107,11 +135,15 @@ const Login: React.FC = () => {
             />
           </FormControl>
 
-          <Typography variant="body2" align="left" padding="30px 0px 5px 0px" gutterBottom>
+          <Typography
+            variant="body2"
+            align="left"
+            padding="30px 0px 5px 0px"
+            gutterBottom>
             Don't have an account? <Link href="#">Sign up</Link>
           </Typography>
 
-          <Button variant="contained" color="primary" fullWidth onClick={handleLogin}>
+          <Button variant="contained" color="primary" onClick={handleLogin}>
             Sign In
           </Button>
         </form>

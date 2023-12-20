@@ -1,33 +1,19 @@
 const LOGIN = "LOGIN";
 const LOGOUT = "LOGOUT";
 const USER_DETAILS = "USER_DETAILS";
+const FILTERED_DATA = "FILTERED_DATA";
 
 export interface UserDetails {
+  id: string;
   name: {
     title: string;
     first: string;
     last: string;
   };
-  login: {
-    username: string;
-  };
   email: string;
   dob: {
     age: number;
-    date: string;
   };
-  location: {
-    country: string;
-    city: string;
-    postcoad: number;
-    state: string;
-  };
-  picture: {
-    large: string;
-    medium: string;
-    thumbnail: string;
-  };
-  phone: string;
 }
 
 // Define initial state
@@ -35,11 +21,17 @@ const initialState: AuthState = {
   isLoggedIn: false,
   username: "",
   user: undefined,
+  filteredData: [],
 };
 
 export const storeUserDetails = (user: UserDetails) => ({
   type: USER_DETAILS,
   payload: { user },
+});
+
+export const storeFilteredData = (filteredData: UserDetails[]) => ({
+  type: FILTERED_DATA,
+  payload: { filteredData },
 });
 
 export const loginSuccess = (username: string) => ({
@@ -55,12 +47,14 @@ export interface AuthState {
   isLoggedIn: boolean;
   username: string;
   user?: UserDetails;
+  filteredData: UserDetails[];
 }
 
 export type AuthAction =
   | ReturnType<typeof loginSuccess>
   | ReturnType<typeof logout>
-  | ReturnType<typeof storeUserDetails>;
+  | ReturnType<typeof storeUserDetails>
+  | ReturnType<typeof storeFilteredData>;
 
 const authReducer = (state = initialState, action: AuthAction): AuthState => {
   switch (action.type) {
@@ -85,6 +79,14 @@ const authReducer = (state = initialState, action: AuthAction): AuthState => {
         return {
           ...state,
           user: action.payload.user,
+        };
+      }
+      break;
+    case FILTERED_DATA:
+      if ("payload" in action && "filteredData" in action.payload) {
+        return {
+          ...state,
+          filteredData: action.payload.filteredData,
         };
       }
       break;

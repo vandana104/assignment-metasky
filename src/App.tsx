@@ -4,7 +4,6 @@ import Login from "./Components/Login/login";
 import { useDispatch } from "react-redux";
 import Home from "./Components/Home/home";
 import Footer from "./Components/Footer/footer";
-import Navbar from "./Components/Navbar/navbar";
 import { loginSuccess } from "./utils/auth";
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
   }, [dispatch, navigate]);
   return (
     <div className="App">
-      {location.pathname !== "/login" && <Navbar />}
       <Routes>
         {!checkLogin && <Route path="/login" element={<Login />} />}
 
