@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 // 
 interface User {
-  id: string; // Assuming the API returns the ID as a string
+  id: string; 
   name: {
     title: string;
     first: string;
@@ -14,7 +14,7 @@ interface User {
   dob: {
     age: number;
   };
-  // Add other details as needed
+
 }
 
 const Home: React.FC = () => {
@@ -43,7 +43,6 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <h1>User Details</h1>
       
       
       <TableContainer>

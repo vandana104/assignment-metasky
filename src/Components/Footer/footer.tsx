@@ -20,24 +20,24 @@ function Footer() {
       }}
     >
         <SearchIcon fontSize="large" /> 
-      <Box width="70%">
+      <Box width="70%" >
         <List sx={{ display: "flex", flexDirection: "row", padding: 0, }}>
           <ListItem >
-            <Link href="#" color="inherit">
+            <Link href="#" color="inherit" sx={{ textDecoration: "none" }}>
               <Typography variant="body1" component="span" sx={{ padding: "10px" }}>
                 Help
               </Typography>
             </Link>
           </ListItem>
           <ListItem>
-            <Link href="#" color="inherit">
+            <Link href="#" color="inherit" sx={{ textDecoration: "none" }}>
               <Typography variant="body1" component="span" sx={{ padding: "10px" }}>
                 Contact Us
               </Typography>
             </Link>
           </ListItem>
           <ListItem>
-            <Link href="#" color="inherit">
+            <Link href="#" color="inherit" sx={{ textDecoration: "none" }}>
               <Typography variant="body1" component="span" sx={{ padding: "10px" }}>
                 Privacy & Terms
               </Typography>
@@ -45,8 +45,6 @@ function Footer() {
           </ListItem>
         </List>
       </Box>
-      
-      
     </Box>
   );
 }
