@@ -8,7 +8,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import NavBar from "../Navbar/NavBar";
+import NavBar from "../Navbar/navbar"
 import { useSelector } from "react-redux";
 import { RootState } from "../../utils/store";
 //
