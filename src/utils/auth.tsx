@@ -5,15 +5,26 @@ const FILTERED_DATA = "FILTERED_DATA";
 
 export interface UserDetails {
   id: string;
+  picture: {
+    large: string;
+    medium: string;
+    thumbnail: string;
+  };
   name: {
     title: string;
     first: string;
     last: string;
   };
+  dob: { age: string };
   email: string;
-  dob: {
-    age: number;
-  };
+  username :string
+  login:{
+    username :string
+  }
+  phone :string;
+  location:{
+    country:string;
+  }
 }
 
 // Define initial state

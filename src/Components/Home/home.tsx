@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
+  Avatar,
   Table,
   TableBody,
   TableCell,
@@ -8,20 +9,31 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import NavBar from "../Navbar/navbar"
+import NavBar from "../Navbar/navbar";
 import { useSelector } from "react-redux";
 import { RootState } from "../../utils/store";
 //
 interface User {
   id: string;
+  picture: {
+    large: string;
+    medium: string;
+    thumbnail: string;
+  };
+  username: string;
   name: {
     title: string;
     first: string;
     last: string;
   };
+  dob: { age: string };
+  login: {
+    username: string;
+  };
   email: string;
-  dob: {
-    age: number;
+  phone: string;
+  location: {
+    country: string;
   };
 }
 
@@ -64,17 +76,27 @@ const Home: React.FC = () => {
             <TableRow>
               <TableCell>Sl.no</TableCell>
               <TableCell>Name</TableCell>
-              <TableCell>Email</TableCell>
               <TableCell>Age</TableCell>
+              <TableCell>Username</TableCell>
+              <TableCell>Email</TableCell>
+              <TableCell>Phone number</TableCell>
+              <TableCell>Country</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {users.map((user, index) => (
               <TableRow key={user.email}>
                 <TableCell>{index + 1}</TableCell>
-                <TableCell>{`${user.name.title} ${user.name.first} ${user.name.last}`}</TableCell>
-                <TableCell>{user.email}</TableCell>
+                <TableCell
+                  sx={{ display: "flex", alignItems: "center", gap: "15px" }}>
+                  <Avatar src={user.picture.large} alt="User" />
+                  {`${user.name.title} ${user.name.first} ${user.name.last}`}
+                </TableCell>
                 <TableCell>{user.dob.age}</TableCell>
+                <TableCell>{user.login.username}</TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>{user.phone}</TableCell>
+                <TableCell>{user.location.country}</TableCell>
               </TableRow>
             ))}
           </TableBody>

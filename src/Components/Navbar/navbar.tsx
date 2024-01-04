@@ -17,15 +17,27 @@ import { useNavigate } from "react-router-dom";
 
 interface User {
   id: string;
+  picture: {
+    large: string;
+    medium: string;
+    thumbnail: string;
+  };
+  dob: { age: string };
+  username :string
   name: {
     title: string;
     first: string;
     last: string;
   };
+  
+  login:{
+    username :string;
+  }
   email: string;
-  dob: {
-    age: number;
-  };
+  phone :string;
+  location:{
+    country:string;
+  }
 }
 interface NavBarProps {
   users: User[];
